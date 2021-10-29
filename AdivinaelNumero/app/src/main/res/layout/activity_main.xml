@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_intentos"
         android:textSize="24sp"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck"
+        android:textColor="@color/text_color"/>
 
     <TextView
         android:id="@+id/tvPista"
@@ -25,9 +26,9 @@
         android:layout_centerInParent="true"
         android:text="@string/tv_pista"
         android:textAlignment="center"
-        android:textColor="#4C4C4C"
         android:textSize="24sp"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck"
+        android:textColor="@color/text_color"/>
 
     <Button
         android:id="@+id/btn_comparacion"
@@ -41,6 +42,15 @@
         android:textSize="24sp"
         android:onClick="adivinarNumero"/>
 
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Reiniciar"
+        android:onClick="reiniciar"/>
 
     <EditText
         android:id="@+id/textIntento"
@@ -50,6 +60,9 @@
         android:layout_marginBottom="60dp"
         android:layout_centerHorizontal="true"
         android:inputType="number"
-        android:text="" />
+        android:text=""
+        android:textColor="@color/text_color"/>
+
+
 
 </RelativeLayout>

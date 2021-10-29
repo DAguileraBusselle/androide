@@ -3,8 +3,12 @@ package com.example.adivinaelnumero;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -19,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
     EditText textIntento;
     RelativeLayout rlFondo;
     Button btn_comparacion;
+    Button btn_reset;
     public static int i = 5;
-    Random rd = new Random();
-    int numSecreto = rd.nextInt((100 - 1) + 1) + 1;
+    public static Random rd = new Random();
+    public static int numSecreto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         tvPista = findViewById(R.id.tvPista);
         rlFondo = findViewById(R.id.rlFondo);
         btn_comparacion = findViewById(R.id.btn_comparacion);
+        btn_reset = findViewById(R.id.btn_reset);
+        numSecreto = rd.nextInt((100 - 1) + 1) + 1;
 
     }
 
@@ -43,9 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (textIntento.getText().toString().isEmpty()) {
             tvPista.setText("Debe introducir un número");
+            manageBlinkEffect();
+
             valido = false;
         } else if (Integer.parseInt(String.valueOf(textIntento.getText())) > 100 || Integer.parseInt(String.valueOf(textIntento.getText())) < 1) {
             tvPista.setText("Debe introducir un número entre 1 y 100");
+            manageBlinkEffect();
+
+
             valido = false;
         }
         if (valido){
@@ -76,7 +89,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+    }
+    public void reiniciar(View view) {
+        i = 5;
+        tvIntentos.setText("Intentos restantes: " + i);
+        tvPista.setText("Debe introducir un número entre 1 y 100");
+        textIntento.setText("");
+        rlFondo.setBackgroundColor(getResources().getColor(R.color.color_fondo));
+        numSecreto = rd.nextInt((100 - 1) + 1) + 1;
+        btn_comparacion.setEnabled(true);
     }
 
+    @SuppressLint("WrongConstant")
+    private void manageBlinkEffect() {
+        ObjectAnimator anim = ObjectAnimator.ofInt(rlFondo, "backgroundColor", getResources().getColor(R.color.color_fondo), getResources().getColor(R.color.naranja),
+                getResources().getColor(R.color.color_fondo));
+        anim.setDuration(250);
+        anim.setEvaluator(new ArgbEvaluator());
+
+        anim.setRepeatCount(3);
+        anim.start();
+
+    }
 
 }
