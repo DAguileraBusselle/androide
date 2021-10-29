@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_fondo"
+    tools:context=".MainActivity"
+    android:id="@+id/rlFondo"
+    android:padding="@dimen/padding_layout">
+
+
+    <TextView
+        android:id="@+id/tvIntentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_intentos"
+        android:textSize="24sp"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/tvPista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/tv_pista"
+        android:textAlignment="center"
+        android:textColor="#4C4C4C"
+        android:textSize="24sp"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btn_comparacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:text="@string/btn_comparacion"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:onClick="adivinarNumero"/>
+
+
+    <EditText
+        android:id="@+id/textIntento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:text="" />
+
+</RelativeLayout>

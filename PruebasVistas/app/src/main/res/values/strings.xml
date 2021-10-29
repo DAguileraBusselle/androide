@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PruebasVistas</string>
+    <string name="btn_saludar">Saludar</string>
+    <string name="tv_saludo">Hola Mundo</string>
+</resources>
