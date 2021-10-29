@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout rlFondo;
     Button btn_comparacion;
     Button btn_reset;
+    //Num de intentos totales
     public static int i = 5;
+    //Num aleatorio entre 1 y 100, se crea en onCreate
     public static Random rd = new Random();
     public static int numSecreto;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Para poder usarlos en el activity_main
         textIntento = findViewById(R.id.textIntento);
         tvIntentos = findViewById(R.id.tvIntentos);
         tvPista = findViewById(R.id.tvPista);
@@ -49,39 +52,50 @@ public class MainActivity extends AppCompatActivity {
         boolean resuelto = false;
         boolean valido = true;
 
+        //Si no hay nada escrito da un aviso
         if (textIntento.getText().toString().isEmpty()) {
             tvPista.setText("Debe introducir un número");
             manageBlinkEffect();
 
             valido = false;
+
+        //Si escribes un num fuera de [1-100] da un aviso y parpadea la pantalla en naranja
         } else if (Integer.parseInt(String.valueOf(textIntento.getText())) > 100 || Integer.parseInt(String.valueOf(textIntento.getText())) < 1) {
             tvPista.setText("Debe introducir un número entre 1 y 100");
             manageBlinkEffect();
 
-
             valido = false;
         }
+        //Si el num introducido es válido
         if (valido){
             int num = Integer.parseInt(String.valueOf(textIntento.getText()));
 
+            //Si se acierta el numSecreto el fondo se vuelve verde
             if (num == numSecreto) {
                 rlFondo.setBackgroundColor(getResources().getColor(R.color.verde));
                 tvPista.setText("Has acertado el número");
                 resuelto = true;
+
+                //Si el num introducido es mayor al numSecreto, quita un intento
             } else if (num > numSecreto) {
                 tvPista.setText("El número secreto es menor al introducido");
                 i --;
+
+                //Si el num introducido es menor al numSecreto, quita un intento
             } else if (num < numSecreto) {
                 tvPista.setText("El número secreto es mayor que el introducido");
                 i --;
             }
             tvIntentos.setText("Intentos restantes: " + i);
+
+            //Si se terminan los intentos muestra el numSecreto, desactiva el btn
+            //y el fondo se pone rojo
             if (!resuelto && i == 0) {
                 tvPista.setText("El número era " + numSecreto);
                 btn_comparacion.setEnabled(false);
                 rlFondo.setBackgroundColor(getResources().getColor(R.color.rojo));
-
             }
+            //Si se adivina el numSecreto el btn se desactiva
             if (resuelto) {
                 btn_comparacion.setEnabled(false);
             }
@@ -91,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //Método para que cuando se le da al btnReset reinicie la pantalla
     public void reiniciar(View view) {
         i = 5;
         tvIntentos.setText("Intentos restantes: " + i);
@@ -101,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         btn_comparacion.setEnabled(true);
     }
 
+    //Método para la animación de aviso, parpadea la pantalla 3 veces en naranja
     @SuppressLint("WrongConstant")
     private void manageBlinkEffect() {
         ObjectAnimator anim = ObjectAnimator.ofInt(rlFondo, "backgroundColor", getResources().getColor(R.color.color_fondo), getResources().getColor(R.color.naranja),

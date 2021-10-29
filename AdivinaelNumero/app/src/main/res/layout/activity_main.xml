@@ -9,7 +9,7 @@
     android:id="@+id/rlFondo"
     android:padding="@dimen/padding_layout">
 
-
+    <!--Txt que indica los intentos-->
     <TextView
         android:id="@+id/tvIntentos"
         android:layout_width="match_parent"
@@ -19,6 +19,7 @@
         tools:ignore="TextContrastCheck"
         android:textColor="@color/text_color"/>
 
+    <!--Txt que indica las pistas-->
     <TextView
         android:id="@+id/tvPista"
         android:layout_width="match_parent"
@@ -30,6 +31,7 @@
         tools:ignore="TextContrastCheck"
         android:textColor="@color/text_color"/>
 
+    <!--Btn que hace la acción de comparar el num-->
     <Button
         android:id="@+id/btn_comparacion"
         android:layout_width="match_parent"
@@ -42,6 +44,7 @@
         android:textSize="24sp"
         android:onClick="adivinarNumero"/>
 
+    <!--Btn que hace que el programa se resetee-->
     <Button
         android:id="@+id/btn_reset"
         android:layout_width="match_parent"
@@ -52,6 +55,7 @@
         android:text="Reiniciar"
         android:onClick="reiniciar"/>
 
+    <!--TxtBox que te deja escribir el num-->
     <EditText
         android:id="@+id/textIntento"
         android:layout_width="match_parent"
